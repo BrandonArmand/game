@@ -325,13 +325,14 @@ class Shop {
   }
 
   /**
-   * Get the value for an item to player
+   * Get the 
+   for an item to player
    */
   value() {
     const { price, name } = Query.getItemData(this.itemId);
     Socket.emit('game:send:message', {
       player: { socket_id: world.players[this.playerIndex].socket_id },
-      text: `${name}: ${price} coins.`,
+      text: this.itemId !== 'coins' ? `${name}: ${price} coins.` : `${this.item.qty} coins.`,
     });
   }
 
